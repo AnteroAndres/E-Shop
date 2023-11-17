@@ -15,7 +15,8 @@ const ProductImage: React.FC<ProductImageProps> = ({
     cartProduct,
     product,
     handleColorSelect,
-}) => {console.log('Ruta de la Imagen:', cartProduct.selectedImg.image);
+}) => {
+    // console.log('Ruta de la Imagen:', cartProduct.selectedImg.image);
     return (
     <div className="grid
     grid-cols-6
