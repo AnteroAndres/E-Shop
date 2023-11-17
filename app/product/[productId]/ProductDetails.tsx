@@ -1,8 +1,9 @@
 "use client"
+import Button from '@/app/components/Button';
+import ProductImage from '@/app/components/products/ProductImage';
 import SetColor from '@/app/components/products/SetColor';
-import SetQuatity from '@/app/components/products/SetQuantity';
+import SetQuantity from '@/app/components/products/SetQuantity';
 import { Rating } from '@mui/material';
-import { type } from 'os';
 import { useCallback, useState } from 'react';
 interface ProductDetailsProps {
     product: any}
@@ -50,7 +51,7 @@ const ProductDetails:React.FC<ProductDetailsProps>= ({product}) => {
         (value: SelectedImgType) => {
             setCartProduct((prev) => {
                 return{...prev,
-                    selectedImg: value,}
+                    selectedImg: value}
             })
         }, 
         [cartProduct.selectedImg]
@@ -78,15 +79,19 @@ const ProductDetails:React.FC<ProductDetailsProps>= ({product}) => {
         })
     }, [cartProduct])
 
-    return <div className="
-    grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>Images</div>
-        <div className='flex flex-col gap-1 text-slate-500 txt-sm'>
+    return(<div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <ProductImage 
+        cartProduct={cartProduct} 
+        product={product} 
+        handleColorSelect={handleColorSelect}
+        />
+        <div className='flex flex-col gap-1
+         text-slate-500 txt-sm'>
             <h2 className="text-3xl font-medium
             text-slate-700">{product.name}</h2>
             <div className='flex items-center gap-2'>
                 <Rating value={productRating} readOnly/>
-                <div>{product.reviews.lenght}reviews</div>
+                <div>{product.reviews.length}reviews</div>
             </div>
             <Horizontal/>
             <div className='text-justify'>{product.description}</div>
@@ -107,18 +112,23 @@ const ProductDetails:React.FC<ProductDetailsProps>= ({product}) => {
                 <Horizontal/>
                 <SetColor cartProduct={cartProduct}
                 images={product.images}
-                handColorSelect={handleColorSelect}/>
+                handleColorSelect={handleColorSelect}/>
                 <Horizontal />
-                <SetQuatity 
+                <SetQuantity 
                 cartProduct={cartProduct}
                 handleQtyIncrease={handleQtyIncrease}
                 handleQtyDecrease={handleQtyDecrease}
                 />
                 <Horizontal />
-                <div>add to cart</div>
+                <div className='max-w-[300px]'>
+                    <Button label="Add To Cart" onClick={() =>
+                    {}}
+                    />
+
+                </div>
 
         </div>
-    </div>;
+    </div>)
 }
  
 export default ProductDetails;

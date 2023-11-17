@@ -4,11 +4,11 @@ import { CartProductType, SelectedImgType } from "@/app/product/[productId]/Prod
 interface SetColorProps {
     images: SelectedImgType[],
     cartProduct: CartProductType,
-    handColorSelect: (value: SelectedImgType) => void,
+    handleColorSelect: (value: SelectedImgType) => void,
 }
 const SetColor: React.FC<SetColorProps> = ({images,
     cartProduct,
-    handColorSelect,}) => {
+    handleColorSelect,}) => {
     
     return <div>
         <div className="flex gap-4 items-center">
@@ -19,7 +19,7 @@ const SetColor: React.FC<SetColorProps> = ({images,
                 return (
                 <div 
                 key={image.color}
-                onClick={() => handColorSelect(image)}
+                onClick={() => handleColorSelect(image)}
                 className={`h-7 w-7 rounded-full
                  border-teal-300 flex items-center justify-center 
                  ${cartProduct.selectedImg.color === image.color 
