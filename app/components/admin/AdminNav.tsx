@@ -1,10 +1,11 @@
 "use client"
 
-import { Container } from "@mui/material";
+
 import Link from "next/link";
 import AdminNavItem from "./AdminNavItem";
 import { MdDashboard, MdDns, MdFormatListBulleted, MdLibraryAdd } from "react-icons/md";
 import { usePathname } from "next/navigation";
+import Container from "../Container";
 
 
 const AdminNav = () => {
