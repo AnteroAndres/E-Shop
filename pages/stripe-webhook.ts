@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { buffer } from "stream/consumers";
+import getRawBody from "raw-body";
 import Stripe from "stripe"
 
 export const config = {
@@ -16,7 +16,7 @@ export default async function handler(
     req: NextApiRequest, 
     res: NextApiResponse
     ){
-        const buf = await buffer(req);
+        const buf = await getRawBody(req);
         const sig = req.headers["stripe-signature"];
 
         if (!sig) {
