@@ -1,15 +1,18 @@
-
 import { getCurrentUser } from '@/actions/getCurrentUser';
 import  prisma  from '@/libs/prismadb';
-import { NextResponse } from 'next/server';
+import { NextApiResponse } from 'next';
 
-export async function PUT(request: Request){
+export async function PUT(request: Request, res: NextApiResponse){
     const currentUser = await getCurrentUser();
 
-    if(!currentUser) return NextResponse.error;
+    if(!currentUser) {
+        res.status(401).json({ error: 'Not authorized' });
+        return;
+    }
 
     if(currentUser.role !== 'ADMIN'){
-        return NextResponse.error;
+        res.status(403).json({ error: 'Forbidden' });
+        return;
     }
     const body = await request.json();
     const { id, deliveryStatus} = body;
@@ -19,5 +22,5 @@ export async function PUT(request: Request){
         data: {deliveryStatus},
     });
 
-    return NextResponse.json(order);
+    res.status(200).json(order);
 }
